@@ -11,7 +11,17 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+const allowedOrigins = ["http://localhost:3000", "https://backend-listadecompras.vercel.app/"];
+app.use(cors({
+    origin: (origin, callback) => {
+        if (!origin || allowedOrigins.includes(origin)) {
+            callback(null, true);
+        } else {
+            callback(new Error("Não permitido pelo CORS"));
+        }
+    },
+    credentials: true
+}));
 
 
 app.use(router);
