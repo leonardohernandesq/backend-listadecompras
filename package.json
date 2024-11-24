@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "build": "tsc",
-    "start": "ts-node ./app.ts",
+    "start": "node dist/app.js", 
     "dev": "ts-node-dev --respawn --transpile-only ./app.ts"
   },
   "keywords": [],
